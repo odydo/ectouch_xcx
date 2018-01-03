@@ -204,52 +204,6 @@ Page({
     });
   },
 
-  addShopCart:function(e){ //添加到购物车
-    var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Shopping/add',
-      method:'post',
-      data: {
-        uid: app.d.userId,
-        pid: that.data.productId,
-        num: that.data.buynum,
-      },
-      header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        // //--init data        
-        var data = res.data;
-        if(data.status == 1){
-          var ptype = e.currentTarget.dataset.type;
-          if(ptype == 'buynow'){
-            wx.redirectTo({
-              url: '../order/pay?cartId='+data.cart_id
-            });
-            return;
-          }else{
-            wx.showToast({
-                title: '加入购物车成功',
-                icon: 'success',
-                duration: 2000
-            });
-          }     
-        }else{
-          wx.showToast({
-                title: data.err,
-                duration: 2000
-            });
-        }
-      },
-      fail: function() {
-        // fail
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      }
-    });
-  },
   addToCart: function (e) {
     var that = this;
     var length = 0;
@@ -272,6 +226,7 @@ Page({
       //已选择规格
       var str = this.getCheckedSpecKey();
       spec_arr = str.split(',');
+      //spec_arr = str;
       var quick = 1;
       
     } 

@@ -5,7 +5,7 @@ Page({
     page:1,
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
-    carts: []
+    carts: [] 
   },
 
 bindMinus: function(e) {
